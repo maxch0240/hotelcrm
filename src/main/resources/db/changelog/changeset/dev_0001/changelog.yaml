@@ -1,0 +1,27 @@
+#databaseChangeLog:
+#  - changeSet:
+#      id: dev_0001
+#      author: Chertenkov
+#  - include:
+#      file: classpath:db/changelog/changeset/dev_0001/DDL/001_create_table_hotels.sql
+#  - include:
+#      file: classpath:db/changelog/changeset/dev_0001/DDL/002_create_table_amenities.sql
+#  - include:
+#      file: classpath:db/changelog/changeset/dev_0001/DML/001_insert_data_hotels.sql
+#  - include:
+#      file: classpath:db/changelog/changeset/dev_0001/DML/002_insert_data_amenities.sql
+
+databaseChangeLog:
+  - changeSet:
+      id: dev_0001_ddl
+      author: Chertenkov
+      changes:
+        - sqlFile:
+            path: classpath:db/changelog/changeset/dev_0001/DDL/001_create_table_hotels.sql
+  - changeSet:
+      id: dev_0001_dml
+      author: Chertenkov
+      changes:
+        - sqlFile:
+            path: classpath:db/changelog/changeset/dev_0001/DML/001_insert_data_hotels.sql
+
