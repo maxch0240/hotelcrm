@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -50,5 +51,11 @@ public class HotelController {
             @PathVariable Long id,
             @RequestBody List<String> amenities) {
         return ResponseEntity.ok(hotelService.addAmenities(id, amenities));
+    }
+
+    @GetMapping("/histogram/{param}")
+    public ResponseEntity<Map<String, Long>> getHistogram(
+            @PathVariable String param) {
+        return ResponseEntity.ok(hotelService.getHistogram(param));
     }
 }

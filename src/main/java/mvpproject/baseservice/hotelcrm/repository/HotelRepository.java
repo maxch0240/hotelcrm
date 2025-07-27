@@ -7,6 +7,7 @@ import mvpproject.baseservice.hotelcrm.model.entity.HotelEntity;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -70,10 +71,23 @@ public interface HotelRepository extends JpaRepository<HotelEntity, Long>, JpaSp
                 }
 
                 predicates.add(criteriaBuilder.and(amenityPredicates.toArray(new Predicate[0])));
+                assert query != null;
                 query.distinct(true);
             }
 
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }
+
+    @Query("SELECT h.brand, COUNT(h) FROM HotelEntity h GROUP BY h.brand")
+    List<Object[]> countHotelsByBrand();
+
+    @Query("SELECT h.address.city, COUNT(h) FROM HotelEntity h GROUP BY h.address.city")
+    List<Object[]> countHotelsByCity();
+
+    @Query("SELECT h.address.country, COUNT(h) FROM HotelEntity h GROUP BY h.address.country")
+    List<Object[]> countHotelsByCountry();
+
+    @Query("SELECT a, COUNT(h) FROM HotelEntity h JOIN h.amenities a GROUP BY a")
+    List<Object[]> countHotelsByAmenity();
 }
