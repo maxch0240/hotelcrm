@@ -5,10 +5,7 @@ import mvpproject.baseservice.hotelcrm.model.dto.HotelBriefDto;
 import mvpproject.baseservice.hotelcrm.model.dto.HotelDto;
 import mvpproject.baseservice.hotelcrm.service.HotelService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,5 +38,10 @@ public class HotelController {
         );
 
         return ResponseEntity.ok(results);
+    }
+
+    @PostMapping("/hotels")
+    public ResponseEntity<HotelBriefDto> create(@RequestBody HotelDto hotelDto) {
+        return ResponseEntity.ok(hotelService.create(hotelDto));
     }
 }

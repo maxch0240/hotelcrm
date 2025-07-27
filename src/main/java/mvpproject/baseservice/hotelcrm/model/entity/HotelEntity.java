@@ -22,7 +22,7 @@ public class HotelEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "brand", nullable = false)

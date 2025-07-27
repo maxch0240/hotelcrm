@@ -18,6 +18,12 @@ public class HotelService {
     private final HotelRepository hotelRepository;
     private final HotelMapper hotelMapper;
 
+    public HotelBriefDto create(HotelDto hotelDto) {
+        HotelEntity entity = hotelMapper.convertToEntity(hotelDto);
+        HotelEntity savedEntity = hotelRepository.save(entity);
+        return hotelMapper.convertToBriefDto(savedEntity);
+    }
+
     public HotelDto getHotelById(Long id) {
         Optional<HotelEntity> hotelEntity = hotelRepository.findById(id);
         HotelDto hotelDto;
