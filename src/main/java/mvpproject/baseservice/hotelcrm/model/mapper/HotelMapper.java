@@ -28,7 +28,7 @@ public class HotelMapper {
                 .build();
     }
 
-    private String formatAddress(AddressEntity address) {
+    String formatAddress(AddressEntity address) {
         if (address == null) return "";
 
         return String.join(", ",
@@ -42,6 +42,4 @@ public class HotelMapper {
     public HotelEntity convertToEntity(HotelDto hotelDto) {
         return modelMapper.map(hotelDto, HotelEntity.class);
     }
-
-
 }
