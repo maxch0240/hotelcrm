@@ -44,4 +44,11 @@ public class HotelController {
     public ResponseEntity<HotelBriefDto> create(@RequestBody HotelDto hotelDto) {
         return ResponseEntity.ok(hotelService.create(hotelDto));
     }
+
+    @PostMapping("/hotels/{id}/amenities")
+    public ResponseEntity<List<String>> addAmenities(
+            @PathVariable Long id,
+            @RequestBody List<String> amenities) {
+        return ResponseEntity.ok(hotelService.addAmenities(id, amenities));
+    }
 }

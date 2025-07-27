@@ -1,5 +1,6 @@
 package mvpproject.baseservice.hotelcrm.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import mvpproject.baseservice.hotelcrm.model.dto.HotelBriefDto;
 import mvpproject.baseservice.hotelcrm.model.dto.HotelDto;
@@ -8,9 +9,8 @@ import mvpproject.baseservice.hotelcrm.model.mapper.HotelMapper;
 import mvpproject.baseservice.hotelcrm.repository.HotelRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -55,5 +55,32 @@ public class HotelService {
         return hotels.stream()
                 .map(hotelMapper::convertToBriefDto)
                 .toList();
+    }
+
+    @Transactional
+    public List<String> addAmenities(Long hotelId, List<String> amenities) {
+        Optional<HotelEntity> hotel = hotelRepository.findById(hotelId);
+        HotelEntity hotelEntity = hotel.orElse(null);
+
+        assert hotelEntity != null;
+        if (hotelEntity.getAmenities() == null) {
+            hotelEntity.setAmenities(new ArrayList<>());
+        }
+
+        Set<String> existingAmenities = hotelEntity.getAmenities().stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toSet());
+
+        List<String> newAmenities = amenities.stream()
+                .filter(Objects::nonNull)
+                .map(String::trim)
+                .filter(amenity -> !amenity.isBlank())
+                .filter(amenity -> !existingAmenities.contains(amenity.toLowerCase()))
+                .toList();
+
+        hotelEntity.getAmenities().addAll(newAmenities);
+
+        hotelRepository.save(hotelEntity);
+        return hotelEntity.getAmenities();
     }
 }
