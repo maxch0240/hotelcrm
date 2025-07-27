@@ -1,17 +1,28 @@
 --liquibase formatted sql
 
-INSERT INTO hotels (name, description, brand, house_number, street, city, country, post_code, phone, email, check_in, check_out)
-VALUES (
-           'Grand Plaza',
-           'Luxury 5-star hotel with ocean views',
-           'Luxury Collection',
-           123,
-           'Ocean Drive',
-           'Miami',
-           'USA',
-           '33139',
-           '+1-305-1234567',
-           'info@grandplaza.com',
-           '15:00',
-           '11:00'
-       );
+INSERT INTO hotels (name, description, brand, house_number, street, city, country, post_code, phone, email, check_in,
+                    check_out)
+VALUES ('Grand Plaza',
+        'Luxury 5-star hotel with ocean views',
+        'Luxury Collection',
+        123,
+        'Ocean Drive',
+        'Miami',
+        'USA',
+        '33139',
+        '+1-305-1234567',
+        'info@grandplaza.com',
+        '15:00',
+        '11:00'),
+       ('DoubleTree by Hilton Minsk',
+        'The DoubleTree by Hilton Hotel Minsk offers 193 luxurious rooms in the Belorussian capital and stunning views of Minsk city from the hotel''s 20th floor ...',
+        'Hilton',
+        9,
+        'Pobediteley Avenue',
+        'Minsk',
+        'Belarus',
+        '220004',
+        '+375 17 309-80-00',
+        'doubletreeminsk.info@hilton.com',
+        '14:00',
+        '12:00');

@@ -29,19 +29,16 @@ public class HotelEntity {
     private String brand;
 
     @Embedded
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private AddressEntity address;
 
     @Embedded
-    @JoinColumn(name = "contacts_id", referencedColumnName = "id")
     private ContactsEntity contacts;
 
     @Embedded
-    @JoinColumn(name = "arrival_time_id", referencedColumnName = "id")
     private ArrivalTimeEntity arrivalTime;
 
     @ElementCollection
-    @CollectionTable(name = "hotel_amenities", joinColumns = @JoinColumn(name = "hotel_id"))
+    @CollectionTable(name = "hotels_amenities", joinColumns = @JoinColumn(name = "hotel_id"))
     @Column(name = "amenity")
     private List<String> amenities;
 }
