@@ -16,4 +16,7 @@ SELECT id, 'Fitness center' FROM hotels WHERE name = 'DoubleTree by Hilton Minsk
 UNION ALL
 SELECT id, 'Pet-friendly rooms' FROM hotels WHERE name = 'DoubleTree by Hilton Minsk'
 UNION ALL
-SELECT id, 'Meeting rooms' FROM hotels WHERE name = 'DoubleTree by Hilton Minsk';
+SELECT id, 'Meeting rooms' FROM hotels WHERE name = 'DoubleTree by Hilton Minsk'
+
+UNION ALL
+SELECT id, 'Free WiFi' FROM hotels WHERE name = 'DoubleTree by Hilton Minsk2222222222';

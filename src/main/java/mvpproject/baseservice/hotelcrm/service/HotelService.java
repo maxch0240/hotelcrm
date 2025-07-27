@@ -39,4 +39,15 @@ public class HotelService {
 
         return hotelBriefDtoList;
     }
+
+    public List<HotelBriefDto> searchHotels(String name, String brand, String city,
+                                            String country, List<String> amenities) {
+        List<HotelEntity> hotels = hotelRepository.searchHotels(
+                name, brand, city, country, amenities
+        );
+
+        return hotels.stream()
+                .map(hotelMapper::convertToBriefDto)
+                .toList();
+    }
 }
