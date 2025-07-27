@@ -1,9 +1,11 @@
 package mvpproject.baseservice.hotelcrm.model.dto;
 
+import lombok.Builder;
 import lombok.Data;
 import java.util.List;
 
 @Data
+@Builder
 public class HotelDto {
     private Long id;
     private String name;
